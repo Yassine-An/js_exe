@@ -1,32 +1,87 @@
-let HumaneScrore=0
-let MachineScore=0
-function getHumaneChoice(){
-    let choice=prompt("enter your choice : rock , paper ou scissor")
-    return choice.toLowerCase()
+let HumaneScore = 0;
+let MachineScore = 0;
+let gameOver = false; 
+
+function getMachineChoice() {
+    const choices = ["rock", "paper", "scissor"];
+    return choices[Math.floor(Math.random() * 3)];
 }
-function getMachineChoice(){
-    choices=["rock","paper","scissor"]
-    let choice=choices[Math.floor(Math.random()*3)]
-    return choice
+
+function playRound(humaneChoice) {
+    
+    if (gameOver) return;
+
+    const machineChoice = getMachineChoice();
+    let resultMessage = "";
+
+    
+    if (humaneChoice === machineChoice) {
+        resultMessage = `Draw! Both chose ${humaneChoice}`;
+    } else if (
+        (humaneChoice === "rock" && machineChoice === "scissor") || 
+        (humaneChoice === "paper" && machineChoice === "rock") || 
+        (humaneChoice === "scissor" && machineChoice === "paper")
+    ) {
+        HumaneScore++;
+        resultMessage = `Human wins this round! ${humaneChoice} beats ${machineChoice}`;
+    } else {
+        MachineScore++;
+        resultMessage = `Machine wins this round! ${machineChoice} beats ${humaneChoice}`;
+    }
+
+    
+    let finalResultMessage = "";
+    if (HumaneScore === 5) {
+        finalResultMessage = "\n GAME OVER: Human wins the game! ";
+        gameOver = true;
+    } else if (MachineScore === 5) {
+        finalResultMessage = "\n GAME OVER: Machine wins the game! ";
+        gameOver = true;
+    }
+
+    
+    mettreAJourAffichage(resultMessage, finalResultMessage);
 }
-function playRound(humaneChoice,machineChoice){
-    if(humaneChoice===machineChoice){
-        return "Draw"
-    }else if((humaneChoice==="rock" && machineChoice==="scissor") || (humaneChoice==="paper" && machineChoice==="rock") || (humaneChoice==="scissor" && machineChoice==="paper")){
-        HumaneScrore++
-        return  `human wins ${humaneChoice} beats ${machineChoice}`
-    }else{
-        MachineScore++
-        return `Machine wins ${machineChoice} beats ${humaneChoice}`
+
+function mettreAJourAffichage(resultatText, finalMessage) {
+    const container = document.querySelector("#container");
+    let scoreDiv = document.querySelector("#score-display");
+    
+    if (!scoreDiv) {
+        scoreDiv = document.createElement("div");
+        scoreDiv.id = "score-display";
+        scoreDiv.style.whiteSpace = "pre-line";
+        scoreDiv.style.marginTop = "20px";
+        scoreDiv.style.fontWeight = "bold";
+        container.appendChild(scoreDiv);
+    }
+    
+    
+    scoreDiv.textContent = `${resultatText}\nHumane Score: ${HumaneScore} - Machine Score: ${MachineScore}${finalMessage}`;
+
+    
+    if (gameOver && !document.querySelector("#reset-btn")) {
+        creerBoutonReset(container);
     }
 }
 
-const playGame = (number) => {
-      for(let i=0;i<number;i++){
-    const humaneChoice=getHumaneChoice()
-    const machineChoice=getMachineChoice()
-    console.log(playRound(humaneChoice,machineChoice))
-    console.log(`Humane Score : ${HumaneScrore} - Machine Score : ${MachineScore}`)
-      }
-    }
-playGame(1)
+function creerBoutonReset(container) {
+    const resetBtn = document.createElement("button");
+    resetBtn.id = "reset-btn";
+    resetBtn.textContent = "Play Again";
+    resetBtn.style.marginTop = "15px";
+    resetBtn.style.display = "block";
+    
+    resetBtn.onclick = () => {
+        HumaneScore = 0;
+        MachineScore = 0;
+        gameOver = false;
+        document.querySelector("#score-display").textContent = "Game reset! Make your move.";
+        resetBtn.remove(); 
+    };
+    
+    container.appendChild(resetBtn);
+}
+
+
+window.playRound = playRound;
