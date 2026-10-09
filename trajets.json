@@ -1,0 +1,32 @@
+[
+  {
+    "code": "T01",
+    "depart": "Fes",
+    "arrivee": "Tanger",
+    "date": "26/12/2025 13:30"
+  },
+  {
+    "code": "T02",
+    "depart": "Casa",
+    "arrivee": "Agadir",
+    "date": "23/12/2025 15:00"
+  },
+  {
+    "code": "T03",
+    "depart": "Casa",
+    "arrivee": "Marrakech",
+    "date": "23/12/2025 15:00"
+  },
+  {
+    "code": "T04",
+    "depart": "Rabat",
+    "arrivee": "Casa",
+    "date": "23/12/2025 15:00"
+  },
+  {
+    "code": "T05",
+    "depart": "Fes",
+    "arrivee": "Casa",
+    "date": "27/12/2025 13:30"
+  }
+]
