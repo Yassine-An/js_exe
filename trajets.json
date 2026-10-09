@@ -3,30 +3,40 @@
     "code": "T01",
     "depart": "Fes",
     "arrivee": "Tanger",
-    "date": "26/12/2025 13:30"
+    "date": "26/12/2025 13:30",
+    "prix1": 300,
+    "prix2": 200
   },
   {
     "code": "T02",
     "depart": "Casa",
     "arrivee": "Agadir",
-    "date": "23/12/2025 15:00"
+    "date": "23/12/2025 15:00",
+    "prix1": 350,
+    "prix2": 250
   },
   {
     "code": "T03",
     "depart": "Casa",
     "arrivee": "Marrakech",
-    "date": "23/12/2025 15:00"
+    "date": "23/12/2025 15:00",
+    "prix1": 250,
+    "prix2": 170
   },
   {
     "code": "T04",
     "depart": "Rabat",
     "arrivee": "Casa",
-    "date": "23/12/2025 15:00"
+    "date": "23/12/2025 15:00",
+    "prix1": 100,
+    "prix2": 70
   },
   {
     "code": "T05",
     "depart": "Fes",
     "arrivee": "Casa",
-    "date": "27/12/2025 13:30"
+    "date": "27/12/2025 13:30",
+    "prix1": 200,
+    "prix2": 140
   }
 ]
